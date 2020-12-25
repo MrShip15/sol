@@ -2,7 +2,7 @@ os: windows
 language: C++
 branches:
   only:
-  - master
+  - main
 before_install:
   - wget -q https://download.qt.io/official_releases/online_installers/qt-unified-windows-x86-online.exe -O qt-unified-windows-x86-online.exe
 install:
