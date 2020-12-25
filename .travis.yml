@@ -8,6 +8,4 @@ before_install:
 install:
   - ./qt-unified-windows-x86-online.exe --script ./.ci/qt_installer_windows.qs -d
 script:
-  - qmake -project
   - qmake SolarSystem.pro
-  - make
