@@ -1,0 +1,21 @@
+os: windows
+language: C++
+branches:
+  only:
+  - master
+before_install:
+  - wget -q https://download.qt.io/official_releases/online_installers/qt-unified-windows-x86-online.exe -O qt-unified-windows-x86-online.exe
+install:
+  - choco install golang
+  - choco install yasm
+  - ./qt-unified-windows-x86-online.exe --script ./.ci/qt_installer_windows.qs -d
+script:
+  - mkdir build
+  - cd build
+  - setx GOROOT "c:\Go"
+  - setx path "%path%;C:\Qt\5.15.2\msvc2019\bin;C:\Go\bin;C:\ProgramData\chocolatey\lib\yasm\tools"
+  - set GOROOT="c:\Go"
+  - set PATH="%PATH%;C:\Qt\5.15.2\msvc2019\bin;C:\Go\bin;C:\ProgramData\chocolatey\lib\yasm\tools"
+  - cmake -DCMAKE_PREFIX_PATH="C:\Qt\5.15.2\msvc2019;C:\Go\bin;C:\ProgramData\chocolatey\lib\yasm\tools" -DBUILD_SHARED_LIBS=OFF ..
+  - cmake --build .
+  - ctest -C DEBUG -E qtgrpc_* --output-on-failure
