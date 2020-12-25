@@ -1,0 +1,8 @@
+<RCC>
+    <qresource prefix="/">
+        <file>Shaders/planetFragShader.glsl</file>
+        <file>Shaders/planetVertShader.glsl</file>
+        <file>Shaders/sunFragShader.glsl</file>
+        <file>Shaders/sunVertShader.glsl</file>
+    </qresource>
+</RCC>
